@@ -1,12 +1,9 @@
-"use client";
-
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useNavigate, Link } from "react-router-dom";
 import { signup } from "@/lib/auth";
 
-export default function SignupPage() {
-  const router = useRouter();
+export function SignupPage() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [orgName, setOrgName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +17,7 @@ export default function SignupPage() {
     setLoading(true);
     try {
       await signup(email, password, name, orgName);
-      router.push("/dashboard");
+      navigate("/dashboard");
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -110,7 +107,7 @@ export default function SignupPage() {
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary hover:underline">
+          <Link to="/login" className="text-primary hover:underline">
             Log in
           </Link>
         </p>

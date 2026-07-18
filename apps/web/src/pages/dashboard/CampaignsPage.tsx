@@ -1,10 +1,7 @@
-"use client";
-
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Megaphone, Plus, MoreVertical, Pencil, Trash2 } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link, useNavigate } from "react-router-dom";
 
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
@@ -48,8 +45,8 @@ const statusStyles: Record<string, string> = {
     "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
 };
 
-export default function CampaignsPage() {
-  const router = useRouter();
+export function CampaignsPage() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [deleteCampaign, setDeleteCampaign] = useState<Campaign | null>(null);
   const [editCampaign, setEditCampaign] = useState<Campaign | null>(null);
@@ -93,7 +90,7 @@ export default function CampaignsPage() {
           <h1 className="text-2xl font-bold text-foreground">Campaigns</h1>
         </div>
         <Link
-          href="/dashboard/campaigns/new"
+          to="/dashboard/campaigns/new"
           className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90"
         >
           <Plus className="h-4 w-4" />
@@ -122,7 +119,7 @@ export default function CampaignsPage() {
             Create your first campaign to start reaching contacts.
           </p>
           <Link
-            href="/dashboard/campaigns/new"
+            to="/dashboard/campaigns/new"
             className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90"
           >
             <Plus className="h-4 w-4" />
@@ -169,7 +166,7 @@ export default function CampaignsPage() {
                   >
                     <td className="px-4 py-3">
                       <Link
-                        href={`/dashboard/campaigns/${campaign.id}`}
+                        to={`/dashboard/campaigns/${campaign.id}`}
                         className="font-medium text-foreground hover:text-primary transition-colors"
                       >
                         {campaign.name}
@@ -214,7 +211,7 @@ export default function CampaignsPage() {
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem
                             onClick={() =>
-                              router.push(`/dashboard/campaigns/${campaign.id}`)
+                              navigate(`/dashboard/campaigns/${campaign.id}`)
                             }
                           >
                             View Details

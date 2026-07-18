@@ -1,7 +1,5 @@
-"use client";
-
 import { useState, useRef } from "react";
-import { useParams } from "next/navigation";
+import { useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { Plus, Upload, MoreVertical, Pencil, Trash2 } from "lucide-react";
@@ -38,8 +36,8 @@ interface ContactList {
   contactCount: number;
 }
 
-export default function ContactListDetailPage() {
-  const { id } = useParams<{ id: string }>();
+export function ContactListDetailPage() {
+  const { id } = useParams();
   const queryClient = useQueryClient();
   const fileRef = useRef<HTMLInputElement>(null);
   const [showAdd, setShowAdd] = useState(false);

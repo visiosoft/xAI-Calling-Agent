@@ -1,9 +1,7 @@
-"use client";
-
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Plus, Users, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
@@ -29,7 +27,7 @@ interface ContactList {
   createdAt: string;
 }
 
-export default function ContactsPage() {
+export function ContactsPage() {
   const queryClient = useQueryClient();
   const [showCreate, setShowCreate] = useState(false);
   const [newName, setNewName] = useState("");
@@ -180,7 +178,7 @@ export default function ContactsPage() {
                 </DropdownMenu>
               </div>
               <Link
-                href={`/dashboard/contacts/${list.id}`}
+                to={`/dashboard/contacts/${list.id}`}
                 className="block pr-8"
               >
                 <h3 className="font-semibold text-card-foreground hover:text-primary">

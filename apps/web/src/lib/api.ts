@@ -1,7 +1,6 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
 function getToken(): string | null {
-  if (typeof window === "undefined") return null;
   return localStorage.getItem("token");
 }
 

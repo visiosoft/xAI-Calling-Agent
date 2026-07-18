@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
-export default function Home() {
+export function HomePage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b border-border">
@@ -8,13 +8,13 @@ export default function Home() {
           <h1 className="text-xl font-bold text-foreground">XAI Calling</h1>
           <div className="flex gap-3">
             <Link
-              href="/login"
+              to="/login"
               className="px-4 py-2 text-sm text-foreground hover:text-primary"
             >
               Log in
             </Link>
             <Link
-              href="/signup"
+              to="/signup"
               className="px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg hover:opacity-90"
             >
               Get Started
@@ -35,13 +35,13 @@ export default function Home() {
           </p>
           <div className="flex gap-4 justify-center">
             <Link
-              href="/signup"
+              to="/signup"
               className="px-8 py-3 bg-primary text-primary-foreground rounded-lg text-lg font-medium hover:opacity-90"
             >
               Start Free
             </Link>
             <Link
-              href="/login"
+              to="/login"
               className="px-8 py-3 border border-border text-foreground rounded-lg text-lg font-medium hover:bg-muted"
             >
               Log in

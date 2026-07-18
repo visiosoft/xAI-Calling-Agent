@@ -1,11 +1,8 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import Link from "next/link";
 import { ArrowLeft, Trash2, Play, Square, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -35,9 +32,9 @@ interface Agent {
   createdAt: string;
 }
 
-export default function AgentDetailPage() {
+export function AgentDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const router = useRouter();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { data: agent, isLoading } = useQuery({
@@ -86,7 +83,7 @@ export default function AgentDetailPage() {
     onSuccess: () => {
       toast.success("Agent deleted");
       queryClient.invalidateQueries({ queryKey: ["agents"] });
-      router.push("/dashboard/agents");
+      navigate("/dashboard/agents");
     },
     onError: () => {
       toast.error("Failed to delete agent");
@@ -121,7 +118,7 @@ export default function AgentDetailPage() {
     return (
       <div className="max-w-2xl space-y-4">
         <Link
-          href="/dashboard/agents"
+          to="/dashboard/agents"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -137,7 +134,7 @@ export default function AgentDetailPage() {
   return (
     <div className="max-w-2xl space-y-6">
       <Link
-        href="/dashboard/agents"
+        to="/dashboard/agents"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -255,7 +252,7 @@ export default function AgentDetailPage() {
             {updateMutation.isPending ? "Saving..." : "Save Changes"}
           </button>
           <Link
-            href="/dashboard/agents"
+            to="/dashboard/agents"
             className="px-4 py-2 border border-border rounded-lg text-foreground font-medium hover:bg-muted transition-colors"
           >
             Cancel

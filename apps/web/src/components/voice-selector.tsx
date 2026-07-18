@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useState } from "react";
 import { Play, Square, Loader2 } from "lucide-react";
 import { XAI_VOICES } from "@xai-calling/shared";
@@ -36,7 +34,7 @@ export function VoiceSelector({ register, errors, fieldName = "voice" }: VoiceSe
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/api/voice-preview`,
+        `${import.meta.env.VITE_API_URL || "http://localhost:3001"}/api/voice-preview`,
         {
           method: "POST",
           headers: {

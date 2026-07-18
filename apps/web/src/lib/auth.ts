@@ -1,5 +1,3 @@
-"use client";
-
 import { api, setToken, clearToken } from "./api";
 
 interface AuthResponse {
