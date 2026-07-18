@@ -1,0 +1,11 @@
+import { PrismaClient } from '@prisma/client';
+const p = new PrismaClient();
+const users = await p.user.findMany();
+console.log("Users:", JSON.stringify(users.map(u => ({id:u.id, email:u.email, orgId:u.organizationId}))));
+const campaigns = await p.campaign.findMany();
+console.log("Campaigns:", JSON.stringify(campaigns.map(c => ({id:c.id, name:c.name, status:c.status, orgId:c.organizationId, callerId:c.callerIdNumber}))));
+const contacts = await p.contact.findMany();
+console.log("Contacts:", JSON.stringify(contacts.map(c => ({id:c.id, phone:c.phoneNumber, listId:c.contactListId}))));
+const providers = await p.providerConfig.findMany();
+console.log("Providers:", JSON.stringify(providers.map(pr => ({id:pr.id, provider:pr.provider, orgId:pr.organizationId}))));
+await p.$disconnect();

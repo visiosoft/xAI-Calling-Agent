@@ -1,0 +1,38 @@
+{
+  "name": "@xai-calling/server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.0.0",
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/multipart": "^9.0.0",
+    "@fastify/websocket": "^11.0.0",
+    "@xai-calling/database": "workspace:*",
+    "@xai-calling/queue": "workspace:*",
+    "@xai-calling/shared": "workspace:*",
+    "bcryptjs": "^3.0.2",
+    "bullmq": "^5.40.0",
+    "csv-parse": "^5.6.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.0",
+    "ioredis": "^5.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "twilio": "^5.7.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/ws": "^8.18.0",
+    "pino-pretty": "^13.1.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
